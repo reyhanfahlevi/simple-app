@@ -1,0 +1,9 @@
+app:
+  port: ":8080"
+
+databases:
+  postgres:
+    master: ""
+    slave: ""
+  elasticsearch:
+    host: ""
