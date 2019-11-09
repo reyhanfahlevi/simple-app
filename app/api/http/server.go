@@ -10,21 +10,32 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/reyhanfahlevi/simple-app/app"
 	"github.com/reyhanfahlevi/simple-app/app/api/http/blog"
-	"github.com/reyhanfahlevi/simple-app/internal/service/post"
-	"github.com/reyhanfahlevi/simple-app/internal/service/user"
-	blogSvc "github.com/reyhanfahlevi/simple-app/internal/usecase/blog"
 )
+
+var (
+	blogHTTP *blog.Handler
+)
+
+// Init will initialize this http package
+func Init(bloguc app.BlogUseCase) {
+	blogHTTP = blog.New(bloguc)
+}
 
 // Run run http server
 func Run(port string) {
 	r := gin.Default()
+
+	/* Register router here */
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "You know, for learning...")
 	})
 
 	SpawnBlogHTTPHandler(r)
+
+	/* End of registering router */
 
 	srv := &http.Server{
 		Addr:    port,
@@ -57,17 +68,12 @@ func Run(port string) {
 	log.Println("Server exiting")
 }
 
-// SpawnBlogHTTPHandler will spawn blog http handler
+// SpawnBlogHTTPHandler will spawn group of blog http handler
+// will have pattern /blog/....
 func SpawnBlogHTTPHandler(r *gin.Engine) {
-	postSvc := post.New()
-	userSvc := user.New()
-
-	blogService := blogSvc.New(postSvc, userSvc)
-	blogHttp := blog.New(blogService)
-
 	group := r.Group("/blog")
 
-	blogHttp.HandlerCreateBlogPost(group)
-	blogHttp.HandlerUpdateBlogPost(group)
-	blogHttp.HandlerGetBlogPost(group)
+	blogHTTP.HandlerCreateBlogPost(group)
+	blogHTTP.HandlerUpdateBlogPost(group)
+	blogHTTP.HandlerGetBlogPost(group)
 }

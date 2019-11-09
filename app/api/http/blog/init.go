@@ -4,12 +4,12 @@ import "github.com/reyhanfahlevi/simple-app/app"
 
 // Handler is struct for blog http handler
 type Handler struct {
-	svc app.BlogServices
+	blog app.BlogUseCase
 }
 
 // New will instantiate http blog package
-func New(svc app.BlogServices) *Handler {
+func New(blogUc app.BlogUseCase) *Handler {
 	return &Handler{
-		svc: svc,
+		blog: blogUc,
 	}
 }

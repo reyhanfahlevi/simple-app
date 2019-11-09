@@ -52,6 +52,11 @@ func getDefaultConfigFile() string {
 		configPath = filepath.Join(repoPath, "files/etc/simple-app/config.yaml")
 	)
 
+	_, err := os.Stat("/etc/simple-app/config.yaml")
+	if os.IsExist(err) {
+		configPath = "/etc/simple-app/config.yaml"
+	}
+
 	return configPath
 }
 

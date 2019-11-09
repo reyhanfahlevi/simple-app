@@ -2,3 +2,7 @@
 !.idea/watcherTasks.xml
 
 **/vendor/**
+
+**/mysql_data/**
+!**/.gitkeep
+http_api

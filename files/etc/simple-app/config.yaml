@@ -1,9 +1,6 @@
 app:
-  port: ":8080"
+  port: ":4040"
 
 databases:
-  postgres:
-    master: ""
-    slave: ""
-  elasticsearch:
-    host: ""
+  mysql:
+    master: "root:root@tcp(mysql:3306)/test_db"

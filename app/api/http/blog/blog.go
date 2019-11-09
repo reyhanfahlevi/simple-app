@@ -34,7 +34,7 @@ func (s *Handler) HandlerGetBlogPost(r gin.IRoutes) gin.IRoutes {
 			c.JSON(http.StatusBadRequest, ErrorResponse{ErrorMsg: "cannot parse id, must be number"})
 			return
 		}
-		post, _ := s.svc.GetBlogPost(c, id)
+		post, _ := s.blog.GetBlogPost(c, id)
 		c.JSON(http.StatusOK, post)
 	})
 }

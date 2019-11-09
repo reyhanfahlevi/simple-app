@@ -4,15 +4,19 @@ import (
 	"context"
 
 	"github.com/reyhanfahlevi/simple-app/internal/model/post"
+	"github.com/reyhanfahlevi/simple-app/pkg/safesql"
 )
 
 // Service is struct for post service
 type Service struct {
+	db safesql.MasterDB
 }
 
 // New will instantiate post service
-func New() *Service {
-	return &Service{}
+func New(db safesql.MasterDB) *Service {
+	return &Service{
+		db: db,
+	}
 }
 
 // CreatePost will store create post to the database storage

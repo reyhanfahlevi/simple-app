@@ -10,4 +10,13 @@ ldflags = -X $(PACKAGE)/cmd.CommitHash=$(COMMIT_HASH) -X $(PACKAGE)/cmd.BuildDat
 build:
 	@echo "${NOW} == BUILDING HTTP SERVER API"
 	@echo "${ldflags}"
-	@CGO_ENABLED=0 go build -ldflags '$(ldflags)' -o http_api cmd/api/main.go
+	@CGO_ENABLED=0 go build -ldflags '$(ldflags)' -o http_api cmd/http-api/main.go
+
+run: build
+	@echo "${NOW} == RUNNING HTTP SERVER API"
+	@./http_api
+
+.PHONY: dev
+dev:
+	@echo "${NOW} == RUNNING DOCKER"
+	@docker-compose -f .dev/docker-compose.dev.yaml up

@@ -1,0 +1,29 @@
+version: '3.2'
+
+services: 
+  simple-app:
+    image: simple-app
+    build:
+        context: .
+        dockerfile: development.dockerfile
+    volumes:
+        - "../.:/go/src/github.com/reyhanfahlevi/simple-app"
+    ports:
+        - "4040:4040"
+    depends_on:
+        - mysql
+    command: ["refresh","run","-c",".dev/refresh.yaml"]
+    container_name: simple-app
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ../.dev/mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    container_name: mysql

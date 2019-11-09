@@ -3,15 +3,21 @@ package user
 import (
 	"context"
 
+	"github.com/reyhanfahlevi/simple-app/pkg/safesql"
+
 	"github.com/reyhanfahlevi/simple-app/internal/model/user"
 )
 
 // Service struct
 type Service struct {
+	db safesql.MasterDB
 }
 
-func New() *Service {
-	return &Service{}
+// New will instantiate user service
+func New(db safesql.MasterDB) *Service {
+	return &Service{
+		db: db,
+	}
 }
 
 // GetUserInfo will get the user information data
