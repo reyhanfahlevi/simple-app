@@ -3,4 +3,4 @@ app:
 
 databases:
   mysql:
-    master: "root:root@tcp(mysql:3306)/test_db"
+    master: "devel:devel@tcp(mysql:3306)/test_db"

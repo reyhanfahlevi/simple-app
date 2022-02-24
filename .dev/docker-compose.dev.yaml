@@ -14,16 +14,24 @@ services:
         - mysql
     command: ["refresh","run","-c",".dev/refresh.yaml"]
     container_name: simple-app
+    networks:
+      sampleapp:
   mysql:
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password
+    command: --authentication_policy=mysql_native_password
     restart: always
     environment:
       MYSQL_DATABASE: test_db
-      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER : devel
+      MYSQL_PASSWORD : devel
     volumes:
-      - ../.dev/mysql_data:/var/lib/mysql
+      - ../.dev/mysql/data:/var/lib/mysql
     ports:
       - "3306:3306"
     container_name: mysql
+    networks:
+      sampleapp:
+
+networks:
+  sampleapp:

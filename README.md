@@ -6,6 +6,11 @@ In short, `service` is responsible as a `data layer`, `usecase` is responsible a
 
 ## Development Guideline
 
+### Requirement
+
+1. Docker
+2. Go 1.14+
+
 ### Docker
 
 This simple-app using docker for easy development, please make sure you already install the docker compose. Then just run:

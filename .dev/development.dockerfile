@@ -1,4 +1,4 @@
-FROM golang:1.12
+FROM golang:1.14
 
 RUN go get -v github.com/markbates/refresh
 
