@@ -13,7 +13,7 @@ require (
 	github.com/nsqio/go-nsq v1.0.7 // indirect
 	github.com/reyhanfahlevi/pkg v0.0.0-20191126070148-185b22fc8126
 	github.com/stretchr/testify v1.4.0
-	golang.org/x/sys v0.0.0-20191003212358-c178f38b412c // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	google.golang.org/appengine v1.6.5 // indirect
 	gopkg.in/yaml.v2 v2.2.4
 )
